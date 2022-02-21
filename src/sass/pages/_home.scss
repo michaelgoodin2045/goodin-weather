@@ -1,0 +1,29 @@
+@use '../base/' as *;
+@use '../abstracts/' as a;
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(to bottom right, #00b4db, #0083b0);
+  font-family: $ff--base;
+  & .loading {
+    margin-top: 3rem;
+    text-align: center;
+    color: wheat;
+    font-size: 2rem;
+  }
+}
+.container {
+  //position: relative;
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  //text-shadow: 0.5px 0.5px 1px black;
+  //overflow: hidden;
+  //background-image: linear-gradient(to bottom right, #00b4db, #0083b0);
+  display: block;
+  //flex-direction: column;
+  //justify-content: flex-start;
+  //align-items: center;
+  //padding-top: 2rem;
+}

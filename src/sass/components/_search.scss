@@ -1,0 +1,54 @@
+@use '../base/' as *;
+@use '../abstracts/' as a;
+
+.search-modal {
+  position: absolute;
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 275px;
+  height: 54px;
+  top: 60px;
+  right: 2%;
+  background-color: #eaeaea;
+  box-shadow: 5px 5px 20px -5px rgba($color: #000000, $alpha: 0.9);
+  border-top: 7px solid #ed28bc;
+  //border-top: 7px solid #b0e807;
+  z-index: 10;
+  &::before {
+    position: absolute;
+    content: '';
+    top: -40px;
+    right: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid #ed28bc;
+    //border-bottom: 18px solid #e00000;
+  }
+  &.open {
+    display: flex;
+  }
+  & .search-form {
+    & input[type='text'] {
+      width: 200px;
+      height: 1.5rem;
+      border: 1px solid #ed28bc;
+      background-color: #ecf9fe;
+    }
+    & .search-btn {
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-top: 3px;
+      background-color: #ed28bc;
+      border: 0;
+      outline: 0;
+      & img {
+        width: 105%;
+        filter: invert(86%) sepia(87%) saturate(4190%) hue-rotate(178deg)
+          brightness(112%) contrast(99%);
+      }
+    }
+  }
+}
