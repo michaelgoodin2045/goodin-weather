@@ -19,34 +19,6 @@ function App() {
   const baseURL = 'https://weatherdbi.herokuapp.com/data/weather/';
   const cors = `https://corsanywhere.herokuapp.com/`;
 
-  // Timer function
-
-  useEffect(() => {
-    const timer = setInterval(() => setDate(new Date()), 60 * 1000);
-    return clearInterval(timer);
-  }, []);
-
-  //const locale = 'en';
-  //const day = date.toLocaleDateString(locale, { weekday: 'long' });
-  //const today = `${day}, ${date.getDate()} ${date.toLocaleDateString(locale, {
-  //  month: 'long',
-  //})}`;
-  const hour = date.getHours();
-  console.log(hour);
-
-  //Store Location in LocalStorage
-
-  useEffect(() => {
-    localStorage.setItem('query', JSON.stringify(query));
-  }, [query]);
-
-  /*
-  const array = localStorage.getItem('savedQueries');
-  const parsedArray = array ? JSON.parse(array) : [];
-  const newArray = [...parsedArray, query];
-  localStorage.setItem('savedQueries', JSON.stringify(newArray));
-  */
-
   useEffect(() => {
     setLoading(true);
     axios
@@ -56,13 +28,33 @@ function App() {
       )
       .then((res) => {
         setWxResults(res.data);
-        console.log(res.data);
+        //console.log(res.data);
       })
       .catch((error) => console.log(error))
       .finally(() => {
         setLoading(false);
       });
   }, [query, cors]);
+
+  // Timer function
+  const refreshTimer = () => {
+    setDate(new Date());
+  };
+
+  useEffect(() => {
+    //const timer = setInterval(() => setDate(new Date()), 1000);
+    //const timer =
+    setInterval(refreshTimer, 60 * 1000);
+    //return clearInterval(timer);
+  }, []);
+
+  const hour = date.getHours();
+
+  //Store Location in LocalStorage
+
+  useEffect(() => {
+    localStorage.setItem('query', JSON.stringify(query));
+  }, [query]);
 
   if (loading) {
     return <p className="loading">Data is loading...</p>;
@@ -114,6 +106,3 @@ function App() {
 }
 
 export default App;
-
-// <Forecast wxResults={wxResults} />
-// <Footer wxResults={wxResults} />

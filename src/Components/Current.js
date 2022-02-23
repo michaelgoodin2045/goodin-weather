@@ -3,6 +3,7 @@ import Search from './Search';
 import glass from '../assets/search-svgrepo-com.svg';
 import Forecast from './Forecast';
 import Waves from './Waves';
+import colors from '../lib/colors';
 
 const Current = ({
   wxResults,
@@ -22,38 +23,8 @@ const Current = ({
   hour,
 }) => {
   const [statsToggle, setStatsToggle] = useState(true);
-  const [forecasToggle, setForecastToggle] = useState(false);
+  const [forecastToggle, setForecastToggle] = useState(false);
   const today = wxResults.next_days.slice(0, 1);
-  const colors = [
-    '#000000',
-    '#000000',
-    '#000000',
-    '#000000',
-    '#000000',
-    '#000000',
-    '#000040',
-    //'#002460',
-    '#a66370',
-    '#0c447e',
-    '#25659b',
-    '#4287b6',
-    '#63aad1',
-    '#87ceeb',
-    '#63aad1',
-    '#4287b6',
-    //'#25659b',
-    //'#0c447e',
-    //'#002460',
-    '#FC9C54',
-    '#FD5E53',
-    '#4B3D60',
-    '#000040',
-    '#08183A',
-    '#000000',
-    '#000000',
-    '#000000',
-    '#000000',
-  ];
 
   const handleStats = () => {
     setStatsToggle(true);
@@ -64,6 +35,14 @@ const Current = ({
     setForecastToggle(true);
   };
 
+  const buttonBorderStyle = {
+    borderTop: `4px solid ${colors[hour]}`,
+  };
+  /*
+  const buttonBorderToggle = {
+    borderTop: statsToggle ? buttonBorderStyle : null
+  }
+*/
   return (
     <>
       <div className="current">
@@ -172,15 +151,31 @@ const Current = ({
           </div>
           <Forecast
             wxResults={wxResults}
-            forecastToggle={forecasToggle}
+            forecastToggle={forecastToggle}
             colors={colors}
             hour={hour}
           />
           <div className="buttons">
-            <button className="current-btn" onClick={handleStats}>
+            <button
+              className="current-btn"
+              style={
+                statsToggle
+                  ? { borderTop: `4px solid ${colors[hour] + '77'}` }
+                  : null
+              }
+              onClick={handleStats}
+            >
               Current
             </button>
-            <button className="forecast-btn" onClick={handleForecast}>
+            <button
+              className="forecast-btn"
+              style={
+                forecastToggle
+                  ? { borderTop: `4px solid ${colors[hour] + '77'}` }
+                  : null
+              }
+              onClick={handleForecast}
+            >
               Forecast
             </button>
           </div>
